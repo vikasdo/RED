@@ -207,8 +207,6 @@ def search(request):
 
         # Product
         c=k=0
-        
-
              for title in container.find_all("span", {"class": "a-size-medium a-color-base a-text-normal"}):
                 if c==2:
                     break
