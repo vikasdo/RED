@@ -195,6 +195,9 @@ def search(request):
 
     # check for sponsored containers
     try:
+        r = requested.urlopen(url)
+
+        soup = BeautifulSoup(r, "html.parser")
         sponsored_containers = soup.findAll("div", {"class": "s-include-content-margin s-border-bottom"})
         print("containers style 3 sponsored: ", len(sponsored_containers))
     except:
