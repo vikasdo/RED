@@ -202,11 +202,12 @@ def search(request):
     t=[]
     p=[]
     imae=[]
-    for container in sponsored_containers:
+    try:
+     for container in sponsored_containers:
 
         # Product
         c=k=0
-        try:
+        
 
              for title in container.find_all("span", {"class": "a-size-medium a-color-base a-text-normal"}):
                 if c==2:
@@ -223,22 +224,26 @@ def search(request):
                     k+=1
 
 
-        except:
+    except:
             name = "N/A"
             print("exceptionoftitle")
-    response = requested.urlopen(url)
-    soup1 = BeautifulSoup(response, 'html.parser')
+    try:
+     response = requested.urlopen(url)
+     soup1 = BeautifulSoup(response, 'html.parser')
 
-    s = soup1.find_all('div', {'class': 'a-section aok-relative s-image-fixed-height'})
+     s = soup1.find_all('div', {'class': 'a-section aok-relative s-image-fixed-height'})
 
-    for s1 in s:
+     for s1 in s:
         if k<1:
          imae.append(s1.img['src'])
          print(s1.img['src'])
          k+=1
-    print(imae)
-    amazon = []
-    for i in range(len(t)):
+     print(imae)
+     amazon = []
+     for i in range(len(t)):
         amazon.append(product(t[i], p[i],cat='Amazon'))
+    except:
+        print()
+
 
     return render(request, "home.html", {'snapdeal': snapdeal,'flipkart':flipkart,'ebay':ebay,'amazon':amazon})
