@@ -243,5 +243,7 @@ def search(request):
     except:
         print()
 
-
-    return render(request, "home.html", {'snapdeal': snapdeal,'flipkart':flipkart,'ebay':ebay,'amazon':amazon})
+    try: 
+      return render(request, "home.html", {'snapdeal': snapdeal,'flipkart':flipkart,'ebay':ebay,'amazon':amazon})
+    except:
+        print()
