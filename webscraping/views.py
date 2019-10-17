@@ -189,9 +189,6 @@ def search(request):
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
     url = "https://www.amazon.in/s?k="+str(key)+''
     print(url)
-    r = requested.urlopen(url)
-
-    soup = BeautifulSoup(r, "html.parser")
 
     # check for sponsored containers
     try:
