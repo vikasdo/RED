@@ -144,6 +144,95 @@
 
 
 	<!-- Destinations -->
+	<div class="destinations" id="destinations">
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<div class="section_subtitle">ok</div>
+					<div class="section_title"><h2> Here the products you are searching</h2></div>
+				</div>
+			</div>
+			<div class="row destinations_row">
+				<div class="col" >
+					<div class="destinations_container item_grid">
+                                 {% for products in flipkart %}
+                   				<!-- Destination -->
+
+						<div class="destination item ">
+							<h2> {{products.cat}}</h2>
+							<div class="destination_image">
+								<img src="{{products.image}} " alt="">
+								<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+							</div>
+							<div class="destination_content">
+								<div class="destination_title"><a href="destinations.html">{{products.name}}</a></div>
+								<div class="destination_subtitle"><p>.</p></div>
+								<div class="destination_price">{{products.price}}</div>
+							</div>
+						</div>
+                               {% endfor %}
+						   {% for products in snapdeal %}
+                   				<!-- Destination -->
+
+						<div class="destination item ">
+							<h2> {{products.cat}}</h2>
+							<div class="destination_image">
+								<img src="{{products.image}} " alt="">
+								<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+							</div>
+							<div class="destination_content">
+								<div class="destination_title"><a href="destinations.html">{{products.name}}</a></div>
+								<div class="destination_subtitle"><p>.</p></div>
+								<div class="destination_price">{{products.price}}</div>
+							</div>
+						</div>
+                               {% endfor %}
+
+						   {% for products in ebay %}
+                   				<!-- Destination -->
+
+						<div class="destination item ">
+							<h2> {{products.cat}}</h2>
+							<div class="destination_image">
+								<img src="{{products.image}} " alt="">
+								<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+							</div>
+							<div class="destination_content">
+								<div class="destination_title"><a href="destinations.html">{{products.name}}</a></div>
+								<div class="destination_subtitle"><p>.</p></div>
+								<div class="destination_price">{{products.price}}</div>
+							</div>
+						</div>
+                               {% endfor %}
+
+						   {% for products in amazon %}
+                   				<!-- Destination -->
+
+						<div class="destination item ">
+							<h2> {{products.cat}}</h2>
+							<div class="destination_image">
+								<img src="{{products.image}} " alt="">
+								<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+							</div>
+							<div class="destination_content">
+								<div class="destination_title"><a href="destinations.html">{{products.name}}</a></div>
+								<div class="destination_subtitle"><p>.</p></div>
+								<div class="destination_price">{{products.price}}</div>
+							</div>
+						</div>
+                               {% endfor %}
+						<!-- Destination -->
+
+
+						<!-- Destination -->
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<!-- Testimonials -->
