@@ -13,37 +13,10 @@ import webbrowser
 from django.http import HttpResponse
 from django.shortcuts import render
 
-
-# Create your views here.
-class product:
-    def __init__(self, name=None, price=None,image=None,cat=None):
-        self.name = name
-        self.price = price
-        self.image=image
-        self.cat=cat
-
-def index(request):
-    prod=product()
-    prod.name='sony tv'
-    prod.img='news_1.jpg'
-    prod.price=39200
-    prod1 = product()
-    prod1.name = 'sony tv'
-    prod1.img = 'news_2.jpg'
-    prod1.price = 39200
-    prod2 = product()
-    prod2.name = 'sony tv'
-    prod2.img = 'news_3.jpg'
-    prod2.price = 39200
-    prod3 = product()
-    prod3.name = 'sony tv'
-    prod3.img = 'news1.jpg'
-    prod3.price = 39200
-    prods=[prod1,prod2,prod3]
-    return render(request, 'index.html',{'prods':prods})
 def search(request):
     product_array=request.GET['key']
     product_arr = product_array.split()
+
 
     key = ''
     for word in product_arr:
@@ -57,7 +30,7 @@ def search(request):
     print(key)
 
     # snapdeal **)))))))_++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    url_flip = 'https://www.snapdeal.com/search?clickSrc=top_searches&keyword=' + str(key) + ''
+    url_flip = 'https://www.snapdeal.com/search?keyword=' + str(key) + ''
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
     keys = []
@@ -185,7 +158,6 @@ def search(request):
      ebay.append(product(tty[i], pr[i],img[i], cat='Ebay'))
 
 #amazon;**************************************************************************************************************************
-   
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
     url = "https://www.amazon.in/s?k="+str(key)+''
@@ -233,9 +205,5 @@ def search(request):
     amazon = []
     for i in range(len(t)):
         amazon.append(product(t[i], p[i],imae[i],cat='Amazon'))
- 
+    return render(request, "home.html", {'snapdeal': snapdeal,'flipkart':flipkart,'ebay':ebay,'amazon':amazon})
 
-    try: 
-      return render(request, "home.html", {'snapdeal': snapdeal,'flipkart':flipkart,'ebay':ebay})
-    except:
-        print()
