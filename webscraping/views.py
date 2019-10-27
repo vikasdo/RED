@@ -185,16 +185,16 @@ def search(request):
      ebay.append(product(tty[i], pr[i],img[i], cat='Ebay'))
 
 #amazon;**************************************************************************************************************************
+   
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
     url = "https://www.amazon.in/s?k="+str(key)+''
     print(url)
+    r = requested.urlopen(url)
 
+    soup = BeautifulSoup(r, "html.parser")
     # check for sponsored containers
     try:
-        r = requested.urlopen(url)
-
-        soup = BeautifulSoup(r, "html.parser")
         sponsored_containers = soup.findAll("div", {"class": "s-include-content-margin s-border-bottom"})
         print("containers style 3 sponsored: ", len(sponsored_containers))
     except:
@@ -202,46 +202,38 @@ def search(request):
     t=[]
     p=[]
     imae=[]
-    try:
-     for container in sponsored_containers:
+    c = k = 0
 
+    for container in sponsored_containers:
         # Product
-             c=k=0
+        try:
              for title in container.find_all("span", {"class": "a-size-medium a-color-base a-text-normal"}):
                 if c==2:
                     break
                 else:
                     t.append(title.text)
                     c+=1
-
              for each in container.find_all('span', {'class': 'a-offscreen'}):
                 if k==2:
                     break
                 else:
                     p.append(each.text)
                     k+=1
+             for s1 in container.find_all('div', {'class': 'a-section a-spacing-none'}):
+                 imae.append(s1.img['src'])
+             print(imae)
+        except:
 
 
-    except:
             name = "N/A"
             print("exceptionoftitle")
-    try:
-     response = requested.urlopen(url)
-     soup1 = BeautifulSoup(response, 'html.parser')
+        if k > 2 and c > 2:
+            break
 
-     s = soup1.find_all('div', {'class': 'a-section aok-relative s-image-fixed-height'})
-
-     for s1 in s:
-        if k<1:
-         imae.append(s1.img['src'])
-         print(s1.img['src'])
-         k+=1
-     print(imae)
-     amazon = []
-     for i in range(len(t)):
-        amazon.append(product(t[i], p[i],cat='Amazon'))
-    except:
-        print()
+    amazon = []
+    for i in range(len(t)):
+        amazon.append(product(t[i], p[i],imae[i],cat='Amazon'))
+ 
 
     try: 
       return render(request, "home.html", {'snapdeal': snapdeal,'flipkart':flipkart,'ebay':ebay})
