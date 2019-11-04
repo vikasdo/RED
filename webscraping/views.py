@@ -12,7 +12,8 @@ import webbrowser
 
 from django.http import HttpResponse
 from django.shortcuts import render
-
+def index(request):
+    return render(request, "home.html")
 def search(request):
     product_array=request.GET['key']
     product_arr = product_array.split()
