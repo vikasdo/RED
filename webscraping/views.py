@@ -12,6 +12,12 @@ import webbrowser
 
 from django.http import HttpResponse
 from django.shortcuts import render
+class product:
+    def __init__(self, name=None, price=None,image=None,cat=None):
+        self.name = name
+        self.price = price
+        self.image=image
+        self.cat=cat
 def index(request):
     return render(request, "home.html")
 def search(request):
